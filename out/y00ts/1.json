@@ -1,0 +1,44 @@
+{
+  "name": "y00later #2",
+  "symbol": "Y00LATER",
+  "description": "y00later is a curated community of builders and creators who stick to their grounds and make the best out of it. Each community member has the power to shape its future.",
+  "image": "1.png",
+  "attributes": [
+    {
+      "trait_type": "Background",
+      "value": "Snow White"
+    },
+    {
+      "trait_type": "Fur",
+      "value": "Chestnut"
+    },
+    {
+      "trait_type": "Face",
+      "value": "Chill"
+    },
+    {
+      "trait_type": "Clothes",
+      "value": "Blue Headphones"
+    },
+    {
+      "trait_type": "Head",
+      "value": "Beanie (blackout)"
+    },
+    {
+      "trait_type": "Eyewear",
+      "value": "Last Supper Squares"
+    },
+    {
+      "trait_type": "1/1",
+      "value": "None"
+    }
+  ],
+  "properties": {
+    "files": [
+      {
+        "uri": "1.png",
+        "type": "image/png"
+      }
+    ]
+  }
+}

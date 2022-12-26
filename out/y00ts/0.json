@@ -1,0 +1,44 @@
+{
+  "name": "y00later #1",
+  "symbol": "Y00LATER",
+  "description": "y00later is a curated community of builders and creators who stick to their grounds and make the best out of it. Each community member has the power to shape its future.",
+  "image": "0.png",
+  "attributes": [
+    {
+      "trait_type": "Background",
+      "value": "Bit Of Blue"
+    },
+    {
+      "trait_type": "Fur",
+      "value": "Pewter"
+    },
+    {
+      "trait_type": "Face",
+      "value": "Wholesome"
+    },
+    {
+      "trait_type": "Clothes",
+      "value": "Banana Hazmat"
+    },
+    {
+      "trait_type": "Head",
+      "value": "Pyrite Crown"
+    },
+    {
+      "trait_type": "Eyewear",
+      "value": "24k Gold Blocks"
+    },
+    {
+      "trait_type": "1/1",
+      "value": "None"
+    }
+  ],
+  "properties": {
+    "files": [
+      {
+        "uri": "0.png",
+        "type": "image/png"
+      }
+    ]
+  }
+}
