@@ -1,1 +1,6 @@
 # fun
+
+```
+yarn
+yarn clone
+``` 

@@ -4,26 +4,31 @@ import {backOff} from "exponential-backoff";
 
 const fs = require('fs');
 
+//change this!
+const BATCH_SIZE = 50;
+
+//in case crashes, can manually enter
+const START_FROM_DEGODS = 0;
+const START_FROM_Y00TS = 0;
+
 (async () => {
   const f: any[] = require('./degods_y00ts.json');
-  const degods = f.filter(i => i.name.includes('DeGod')).slice(0, 5);
-  const y00ts = f.filter(i => i.name.includes('y00t')).slice(0, 5);
-  console.log('degods total', degods.length);
-  console.log('y00ts total', y00ts.length);
-
-  const batchSize = 2;
+  const degods = f.filter(i => i.name.includes('DeGod')).slice(START_FROM_DEGODS)
+  const y00ts = f.filter(i => i.name.includes('y00t')).slice(START_FROM_Y00TS);
+  console.log('degods total to do:', degods.length);
+  console.log('y00ts total to do:', y00ts.length);
 
   // --------------------------------------- degods
 
   let batchCounter = 0;
-  let totalBatches = Math.round(degods.length / batchSize);
+  let totalBatches = Math.round(degods.length / BATCH_SIZE);
 
   console.log('begin degods')
   while (degods.length > 0) {
-    const nextBatch = degods.splice(0, batchSize);
+    const nextBatch = degods.splice(0, BATCH_SIZE);
     await Promise.all(nextBatch.map(async (f, i) => {
       const {data: meta} = await backOff(() => axios.get(f.metadataUri));
-      const degodCounter = batchCounter * batchSize + i;
+      const degodCounter = batchCounter * BATCH_SIZE + i;
       const out = {
         "name": `DeGone #${degodCounter + 1}`,
         "symbol": "DGONE",
@@ -44,20 +49,22 @@ const fs = require('fs');
     }))
 
     batchCounter++;
-    console.log(`done degods batch ${batchCounter}/${totalBatches}`)
+    console.log(`> done degods batch ${batchCounter}/${totalBatches}`)
   }
+
+  console.log('✅ degods done')
 
   // --------------------------------------- y00ts
 
   batchCounter = 0;
-  totalBatches = Math.round(y00ts.length / batchSize);
+  totalBatches = Math.round(y00ts.length / BATCH_SIZE);
 
   console.log('begin y00ts')
   while (y00ts.length > 0) {
-    const nextBatch = y00ts.splice(0, batchSize);
+    const nextBatch = y00ts.splice(0, BATCH_SIZE);
     await Promise.all(nextBatch.map(async (f, i) => {
       const {data: meta} = await backOff(() => axios.get(f.metadataUri));
-      const y00tCounter = batchCounter * batchSize + i;
+      const y00tCounter = batchCounter * BATCH_SIZE + i;
       const out = {
         "name": `y00later #${y00tCounter + 1}`,
         "symbol": "Y00LATER",
@@ -78,10 +85,10 @@ const fs = require('fs');
     }))
 
     batchCounter++;
-    console.log(`done y00ts batch ${batchCounter}/${totalBatches}`)
+    console.log(`> done y00ts batch ${batchCounter}/${totalBatches}`)
   }
 
-  console.log('✅ done everything')
+  console.log('✅ y00ts done')
 })()
 
 export async function downloadFile(fileUrl: string, outputLocationPath: string) {
